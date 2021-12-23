@@ -1,9 +1,6 @@
 from tkinter import *
 from tkinter import messagebox
 
-from PIL import ImageTk
-
-
 class LoginScreen(Frame):
 
     def __init__(self):
@@ -47,7 +44,9 @@ class LoginScreen(Frame):
             print(line)
             splitted_line = line.split(";")
             print(splitted_line)
-
+            print(line)
+            splitted_line = line.split(";")
+            print(splitted_line)
         if username == 'ezgi' and password == '12345':
             messagebox.showinfo("Message", "Login successful\n" + "Welcome ")
         else:
