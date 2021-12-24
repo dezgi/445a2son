@@ -45,7 +45,6 @@ class LoginScreen(Frame):
         print(loginstr)
         checkServer(loginstr)
 
-
 def checkServer(loginstr):
         file = open("users.txt")  # opens file
         lines = file.readlines() 
