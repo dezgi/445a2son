@@ -1,0 +1,5 @@
+employee1;e123;employee
+employee2;k343;employee
+manager1;7684;manager
+hilal;123;employee
+ezgi;12345;manager
