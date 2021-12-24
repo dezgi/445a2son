@@ -51,7 +51,8 @@ class LoginScreen(Frame):
         loginstr = "login"
         add_ = ";"
         loginstr = loginstr + add_ + username + add_ + password
-        self.client.send(loginstr).encode()  # send the client message to the server
+        encodedstr = loginstr.encode()
+        self.client.send(encodedstr) # send the client message to the server
 
         serverMsg = self.client.recv(1024).decode()
 
