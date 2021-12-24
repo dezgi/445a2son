@@ -1,6 +1,8 @@
 from tkinter import *
 from tkinter import messagebox
 
+
+
 class LoginScreen(Frame):
 
     def __init__(self):
@@ -32,26 +34,58 @@ class LoginScreen(Frame):
         self.login = Button(self.frame3, text="Login", command=self.buttonPressed)
         self.login.pack(side = LEFT, padx= 5, pady=5)
 
+
     def buttonPressed(self):
         username = self.userName.get()
         password = self.password.get()
+        loginstr = "login"
+        add_ = ";"
+        loginstr = loginstr + add_ + username + add_ +password
+        print(loginstr)
+        checkServer(loginstr)
 
-        #checkServer()
-        # reading username.txt file
+
+def checkServer(loginstr):
         file = open("users.txt")  # opens file
-        lines = file.readlines()  # since there is no data in the first line, it starts reading the file after second line
+        lines = file.readlines() 
+        username = loginstr.split(";")[1]
+        password = loginstr.split(";")[2]
+        userlist = []
         for line in lines:
-            print(line)
-            splitted_line = line.split(";")
-            print(splitted_line)
-            print(line)
-            splitted_line = line.split(";")
-            print(splitted_line)
-        if username == 'ezgi' and password == '12345':
-            messagebox.showinfo("Message", "Login successful\n" + "Welcome ")
-        else:
-            messagebox.showinfo("Message", "Invalid credentials\n",icon = 'error') # change icon to the error icon
+            userdetails = line.split(";")
+            userlist.append(userdetails) # ['employee1', 'e123', 'employee\n'] adds username,password and role to the userlist
+        i=0
+        while(i<len(userlist)): #checks all the users if there is a match in username and password it stops, otherwise it continues until check all the data
+            notfound=0
+            if(userlist[i][0]==username): 
+                if(userlist[i][1]==password):
+                    if(userlist[i][2]=="employee\n"):
+                        messagebox.showinfo("Message", "Login successful\n" + "Welcome "+username)
+                        print("this user is employee")
+                        break
+                            #goemployee gui
+                    else: #if the user is not specified as employee it means they are manager
+                        print("this user is manager")
+                        messagebox.showinfo("Message", "Login successful\n" + "Welcome "+username)
+                        #gomanager gui
+                else:
+                    print("Password is incorrect!")
+            else:
+                print("User not found!")
+                notfound = 1
+            i = i+1
+        if notfound ==1:
+                messagebox.showinfo("Message", "Invalid credentials\n",icon = 'error') # change icon to the error icon
 
+                
+            
+        
+      
+
+
+
+        
+     
 
     #def checkServer(self,a):
 
